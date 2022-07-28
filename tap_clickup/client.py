@@ -102,6 +102,9 @@ class ClickUpStream(RESTStream):
                 f"Error making request to API: {prepared_request.url} "
                 f"[{response.status_code} - {str(response.content)}]".replace(
                     "\\n", "\n"
+                f"url: {response.request.url}\n"
+                f"body: {response.request.body}\n"
+                f"headers: {response.request.headers}"
                 )
             )
         self.logger.debug("Response received successfully.")

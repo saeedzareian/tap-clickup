@@ -99,6 +99,9 @@ class ClickUpStream(RESTStream):
             msg = (
                 f"{response.status_code} Client Error: "
                 f"{response.reason} for path: {self.path}"
+                f"url: {response.request.url}\n"
+                f"body: {response.request.body}\n"
+                f"headers: {response.request.headers}"
             )
             raise FatalAPIError(msg)
 
@@ -106,6 +109,9 @@ class ClickUpStream(RESTStream):
             msg = (
                 f"{response.status_code} Server Error: "
                 f"{response.reason} for path: {self.path}"
+                f"url: {response.request.url}\n"
+                f"body: {response.request.body}\n"
+                f"headers: {response.request.headers}"
             )
             raise RetriableAPIError(msg)
 

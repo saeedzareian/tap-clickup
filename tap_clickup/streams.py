@@ -260,15 +260,15 @@ class TasksStream(ClickUpStream):
         if previous_token is None:
             previous_token = 0
 
-        for _ in extract_jsonpath(self.records_jsonpath, input=response.json()):
-            recordcount = recordcount + 1
+        # for _ in extract_jsonpath(self.records_jsonpath, input=response.json()):
+        #    recordcount = recordcount + 1
 
         # I wonder if a better approach is to just check for 0 records and stop
         # For now I'll follow the docs verbatium
         # From the api docs, https://clickup.com/api.
         # you should check list limit against the length of each response
         # to determine if you are on the last page.
-        if recordcount == 100:
+        if len(response.json()["tasks"]) != 0:
             newtoken = previous_token + 1
         else:
             newtoken = None
